@@ -3,12 +3,15 @@ public class Card {
     private String suit;
     private int point;
 
+    private boolean isFaceUp;
+
     public Card(String rank, String suit, int point) {
         this.rank = rank;
         this.suit = suit;
         this.point = point;
-
+        isFaceUp = false;
     }
+
 
     public String getRank() {
         return rank;
