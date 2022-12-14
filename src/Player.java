@@ -1,16 +1,20 @@
+//Program by Kate Little, 12/14/22
 import java.util.ArrayList;
+
 public class Player {
     private String name;
     private ArrayList <Card> card;
     private ArrayList <Card> hand;
     private int points;
 
+    //Constructs a new player
     public Player(String name) {
         this.name = name;
         points = 0;
         hand = new ArrayList <Card>();
     }
 
+    //Alternate constructor for when player already has a hand
     public Player(String name, ArrayList <Card> hand) {
         this.name = name;
         points = 0;
@@ -20,6 +24,7 @@ public class Player {
     public String getName() {
         return name;
     }
+
     public ArrayList<Card> getCard() { return card; }
 
     public ArrayList<Card> getHand() {
@@ -30,6 +35,7 @@ public class Player {
         return points;
     }
 
+    //Prints a numeric label for each card
     public void printKeys(){
         for (int i = 0; i < hand.size(); i++){
             System.out.print("         " + (i + 1) + "       ");
@@ -42,13 +48,13 @@ public class Player {
         hand.add(other);
     }
 
-    //deals the player 7 cards
+    //Deals the player 7 cards
     public void giveHand(Deck deck){
         for (int i = 0; i < 7; i++){
             addCard(deck.deal());
         }
     }
-    //returns player's points + cards in string data type
+    //Returns player's points + cards as a string
     public String String(){
         return getName() + " has " + getPoints() + "\n" + getName() +"'s cards:" + getHand();
     }
