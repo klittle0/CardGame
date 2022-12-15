@@ -8,11 +8,12 @@ public class Deck {
 
     //Constructs a new deck
     public Deck(String[] ranks, String[] suits, int[] points) {
-        cards = new ArrayList <Card>();
+        cards = new ArrayList<>();
         //Fills arraylist with a deck
+        //Demonstrates that I can traverse and modify ArrayLists
         for (int i = 0; i < ranks.length; i++) {
-            for (int j = 0; j < suits.length; j++) {
-                cards.add(new Card(ranks[i], suits[j], points[i]));
+            for (String suit : suits) {
+                cards.add(new Card(ranks[i], suit, points[i]));
             }
         }
         //sets initial value of cardsLeft
@@ -20,7 +21,7 @@ public class Deck {
     }
 
     //Returns whether deck is empty (true or false)
-    public boolean isEmpty(ArrayList <Card> deck){
+    public boolean isEmpty(){
         return cardsLeft <= 0;
     }
 
@@ -39,7 +40,7 @@ public class Deck {
 
     //Deals a card from deck to the user. If the deck is empty, returns null
     public Card deal(){
-        if (isEmpty(cards)){
+        if (isEmpty()){
             return null;
         }
         cardsLeft--;

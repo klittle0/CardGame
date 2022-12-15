@@ -9,14 +9,13 @@ public class Game {
     private int answer;
 
     private Card topCopy;
-    private int[] points;
 
     //Creates new game object
     public Game() {
         Scanner s = new Scanner(System.in);
         String[] rank = new String[]{"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
         String[] suits = new String[]{"Hearts", "Clubs", "Spades", "Diamonds"};
-        points = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
+        int[] points = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
         printInstructions();
         //Gets user's name
         System.out.println("What is the first player's name? ");
@@ -50,12 +49,7 @@ public class Game {
         }
         Card userCard = player.getHand().get(userInput - 1);
         //if the suit of the card the user inputted is the suit/rank of the top card or = -1 (input to draw)
-        if ((userCard.getSuit().equals(top.getSuit())) || (userCard.getRank().equals(top.getRank()))){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return (userCard.getSuit().equals(top.getSuit())) || (userCard.getRank().equals(top.getRank()));
     }
 
     //Conducts a round for 1 player. Terminates once the player has placed a card on the game deck
@@ -65,21 +59,21 @@ public class Game {
         //Continues with player's turn until they have successfully placed a card on top of the deck
         while (topCopy.equals(top)) {
             System.out.println("pile: " + top);
-            //displays user's hand
-            System.out.println(player1.getHand());
-            player1.printKeys();
+            //Displays user's hand
+            System.out.println(current.getHand());
+            current.printKeys();
             System.out.println("Enter which card you wish to play, -2 to draw, or 0 iff you have won: ");
             answer = s.nextInt();
             //If card is valid, put on top of game deck
-            if (isValid(answer, player1)) {
-                top = player1.getHand().remove(answer - 1);
+            if (isValid(answer, current)) {
+                top = current.getHand().remove(answer - 1);
                 break;
             }
             //If the user is trying to draw a new card
             else if (answer == -2) {
                 //player gets a card from the deck iff there are cards remaining. Else, the game is ended
                 if (deck.getCardsLeftVariable() > 0){
-                    player1.addCard(deck.deal());
+                    current.addCard(deck.deal());
                 }
                 else{
                     System.out.println("There are no cards left in the deck. Please restart the game to play again.");
@@ -140,10 +134,7 @@ public class Game {
 
     //Checks if a player has won the game
     public boolean hasWon(Player player){
-        if (player.getHand().size() == 0) {
-            return true;
-        }
-        return false;
+        return player.getHand().size() == 0;
     }
 
     //Creates & plays new game object
