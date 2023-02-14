@@ -1,4 +1,5 @@
-//Program by Kate Little, 12/14/22
+// Program by Kate Little, 12/14/22
+// Last edited by Kate Little 2/13/23
 import java.util.ArrayList;
 
 public class Player {
@@ -7,14 +8,14 @@ public class Player {
     private ArrayList <Card> hand;
     private int points;
 
-    //Constructs a new player
+    // Constructs a new player
     public Player(String name) {
         this.name = name;
         points = 0;
         hand = new ArrayList <Card>();
     }
 
-    //Alternate constructor for when player already has a hand
+    // Alternate constructor for when player already has a hand
     public Player(String name, ArrayList <Card> hand) {
         this.name = name;
         points = 0;
@@ -31,11 +32,13 @@ public class Player {
         return hand;
     }
 
+    public int getHandSize() { return hand.size(); }
+
     public int getPoints() {
         return points;
     }
 
-    //Prints a numeric label for each card
+    // Prints a numeric label for each card
     public void printKeys(){
         for (int i = 0; i < hand.size(); i++){
             System.out.print("         " + (i + 1) + "       ");
@@ -43,18 +46,18 @@ public class Player {
         System.out.println(" ");
     }
 
-    //Adds a new card to the player's hand
+    // Adds a new card to the player's hand
     public void addCard(Card other){
         hand.add(other);
     }
 
-    //Deals the player 7 cards
+    // Deals the player 7 cards
     public void giveHand(Deck deck){
         for (int i = 0; i < 7; i++){
             addCard(deck.deal());
         }
     }
-    //Returns player's points + cards as a string
+    // Returns player's points + cards as a string
     public String String(){
         return getName() + " has " + getPoints() + "\n" + getName() +"'s cards:" + getHand();
     }
